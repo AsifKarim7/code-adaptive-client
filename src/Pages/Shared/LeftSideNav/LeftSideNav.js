@@ -1,9 +1,25 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const LeftSideNav = () => {
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/categories')
+            .then(res => res.json())
+            .then(data => setCategories(data))
+    }, [])
+
     return (
         <div>
-            <h1>Left side nav</h1>
+            <h1>All Courses</h1>
+            <div>
+                {
+                    categories.map(category => <p key={category.id}> <Link to={`/category/${category.id}`} className="text-decoration-none text-dark fs-5">{category.name}</Link></p>)
+                }
+            </div>
         </div>
     );
 };
