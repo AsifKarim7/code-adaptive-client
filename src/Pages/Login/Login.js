@@ -1,17 +1,21 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { useContext } from 'react';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
+import { useState } from 'react';
 
 
 const Login = () => {
-
+    const [error, setError] = useState('');
     const { providerLogin, signIn } = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     const googleProvider = new GoogleAuthProvider()
 
@@ -20,8 +24,13 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setError('');
+                navigate(from, { replace: true });
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error);
+                setError(error.message)
+            })
     }
 
     const handleSubmit = event => {
@@ -35,11 +44,12 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
-                navigate('/');
+                setError('');
+                navigate(from, { replace: true });
             })
             .catch(error => {
-                console.error(error)
-
+                console.error(error);
+                setError(error.message)
             })
     }
 
@@ -57,10 +67,14 @@ const Login = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control name="password" type="password" placeholder="Password" required />
                 </Form.Group>
-
-                <Button variant="primary" type="submit">
-                    Login
-                </Button>
+                <div>
+                    <Button variant="primary" type="submit">
+                        Login
+                    </Button>
+                </div>
+                <Form.Text className='text-danger'>
+                    {error}
+                </Form.Text>
             </Form>
             <div className='my-3'>
                 <Button onClick={handleGoogleSignIn} variant="outline-primary"><FaGoogle></FaGoogle> Login with Google</Button>
