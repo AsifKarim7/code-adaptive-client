@@ -21,11 +21,11 @@ const MiddleSide = () => {
                 {
                     categories.map(category =>
                         <Card style={{ width: '18rem' }} key={category.id}>
-                            <Card.Img variant="top" src={category.img} />
+                            <Card.Img variant="top" style={{ height: '225px' }} src={category.img} />
                             <Card.Body>
                                 <Card.Title>{category.name}</Card.Title>
                                 <Card.Text>Price: {category.price}</Card.Text>
-                                <Button variant="outline-primary"><Link to={`/category/${category.id}`} className="text-decoration-none text-dark">Details</Link></Button>
+                                <Button variant="outline-primary"><Link to={`/course/${category.id}`} className="text-decoration-none text-dark">Details</Link></Button>
                             </Card.Body>
                         </Card>
 
