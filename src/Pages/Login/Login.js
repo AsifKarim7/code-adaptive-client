@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { useContext } from 'react';
 import { AuthContext } from '../../Contexts/AuthProvider';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { useState } from 'react';
 
 
@@ -17,7 +17,8 @@ const Login = () => {
 
     const from = location.state?.from?.pathname || "/";
 
-    const googleProvider = new GoogleAuthProvider()
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
 
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
@@ -32,6 +33,21 @@ const Login = () => {
                 setError(error.message)
             })
     }
+
+    const handleGithubSignIn = () => {
+        providerLogin(githubProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                setError('');
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                console.log(error);
+                setError(error.message)
+            })
+    }
+
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -78,7 +94,7 @@ const Login = () => {
             </Form>
             <div className='my-3'>
                 <Button onClick={handleGoogleSignIn} variant="outline-primary"><FaGoogle></FaGoogle> Login with Google</Button>
-                <Button className='ms-3' variant="outline-dark"> <FaGithub></FaGithub> Login with Github</Button>
+                <Button onClick={handleGithubSignIn} className='ms-3' variant="outline-dark"> <FaGithub></FaGithub> Login with Github</Button>
             </div>
 
             <p><small>New to this website? Please <Link to='/register'>Register</Link></small></p>
