@@ -5,9 +5,17 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useContext } from 'react';
 import { AuthContext } from '../../../Contexts/AuthProvider';
+import { FaUser } from 'react-icons/fa';
+import { Button, Image } from 'react-bootstrap';
 
 const Header = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -22,8 +30,26 @@ const Header = () => {
                         <Nav.Link><Link className='text-decoration-none' to='/blog'>Blog</Link></Nav.Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link><Link className='text-decoration-none' to='/'>{user?.displayName}</Link></Nav.Link>
-                        <Nav.Link><Link className='text-decoration-none' to='/login'>Login</Link></Nav.Link>
+                        <Nav.Link>
+                            {
+                                user?.uid ?
+                                    <>
+                                        {user?.photoURL ?
+                                            <Image
+                                                style={{ height: '40px' }}
+                                                roundedCircle src={user?.photoURL}>
+                                            </Image>
+                                            :
+                                            <FaUser className='text-dark'></FaUser>
+                                        }
+                                        <Button className='ms-2' variant="outline-primary" onClick={handleLogOut}>Log out</Button>
+                                    </>
+                                    :
+                                    <>
+                                        <Button className='ms-2' variant="outline-primary"><Link className='text-decoration-none' to='/login'>Login</Link></Button>
+                                    </>
+                            }
+                        </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
