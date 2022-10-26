@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useContext } from 'react';
 import { AuthContext } from '../../../Contexts/AuthProvider';
-import { FaUser } from 'react-icons/fa';
+import { FaMoon, FaSun, FaUser } from 'react-icons/fa';
 import { Button, Image } from 'react-bootstrap';
 import { useState } from 'react';
 
@@ -34,10 +34,10 @@ const Header = () => {
                         <Nav.Link><Link className='text-decoration-none' to='/courses'>Courses</Link></Nav.Link>
                         <Nav.Link><Link className='text-decoration-none' to='/faq'>FAQ</Link></Nav.Link>
                         <Nav.Link><Link className='text-decoration-none' to='/blog'>Blog</Link></Nav.Link>
-                        <Button onClick={handleToggle} variant={state ? 'light' : 'dark'}>
-                            {state ? 'Light' : 'Dark'}
-                        </Button>
                     </Nav>
+                    <Button onClick={handleToggle} variant={state ? 'dark' : 'light'}>
+                        {state ? <FaMoon></FaMoon> : <FaSun></FaSun>}
+                    </Button>
                     <Nav>
                         <Nav.Link>
                             {
