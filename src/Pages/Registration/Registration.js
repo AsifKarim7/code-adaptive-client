@@ -8,7 +8,7 @@ import { AuthContext } from '../../Contexts/AuthProvider';
 
 const Registration = () => {
     const [error, setError] = useState('');
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -21,7 +21,7 @@ const Registration = () => {
         const photoURL = form.photoURL.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name, photoURL, email, password);
+
 
 
         createUser(email, password)
@@ -29,6 +29,7 @@ const Registration = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+                handleUpdateUserProfile(name, photoURL);
                 setError('');
                 navigate(from, { replace: true });;
             })
@@ -36,6 +37,16 @@ const Registration = () => {
                 console.error(error);
                 setError(error.message)
             });
+    }
+
+    const handleUpdateUserProfile = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        updateUserProfile(profile)
+            .then(() => { })
+            .catch(error => console.error(error));
     }
 
 
