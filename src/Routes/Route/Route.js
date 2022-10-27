@@ -9,10 +9,12 @@ import Registration from "../../Pages/Registration/Registration";
 import Premium from "../../Pages/Premium/Premium";
 import Course from "../../Pages/Course/Course";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 export const routes = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',

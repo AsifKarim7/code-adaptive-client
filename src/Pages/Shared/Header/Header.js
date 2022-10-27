@@ -24,20 +24,25 @@ const Header = () => {
     }
 
     return (
-        <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+        <Navbar collapseOnSelect expand="lg" variant="dark" className='bg-nav'>
             <Container>
-                <Navbar.Brand><Link className='text-decoration-none fw-bold' to='/'>Code Adaptive</Link></Navbar.Brand>
+                <Navbar.Brand>
+                    <Image style={{ height: '50px' }} roundedCircle src='https://images.vexels.com/media/users/3/224241/isolated/preview/4d2aacf413b02b74c2cdb75ea41f24d3-programming-diple-logo.png' ></Image>
+                    <Link className='text-decoration-none fw-bold title-color ms-2' to='/'>Code Adaptive</Link>
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link><Link className='text-decoration-none' to='/'>Home</Link></Nav.Link>
-                        <Nav.Link><Link className='text-decoration-none' to='/courses'>Courses</Link></Nav.Link>
-                        <Nav.Link><Link className='text-decoration-none' to='/faq'>FAQ</Link></Nav.Link>
-                        <Nav.Link><Link className='text-decoration-none' to='/blog'>Blog</Link></Nav.Link>
+                    <Nav className="ms-auto me-auto">
+                        <Button className='me-2' variant="outline-primary"><Link className='text-decoration-none text-white' to='/'>Home</Link></Button>
+                        <Button className='me-2' variant="outline-primary"><Link className='text-decoration-none text-white' to='/courses'>Courses</Link></Button>
+                        <Button className='me-2' variant="outline-primary"><Link className='text-decoration-none text-white' to='/faq'>FAQ</Link></Button>
+                        <Button className='me-2' variant="outline-primary"><Link className='text-decoration-none text-white' to='/blog'>Blog</Link></Button>
                     </Nav>
+
                     <Button onClick={handleToggle} variant={state ? 'dark' : 'light'}>
                         {state ? <FaMoon></FaMoon> : <FaSun></FaSun>}
                     </Button>
+
                     <Nav>
                         <Nav.Link>
                             {
@@ -45,17 +50,18 @@ const Header = () => {
                                     <>
                                         {user?.photoURL ?
                                             < Image
+                                                className='ms-2'
                                                 style={{ height: '40px' }}
                                                 roundedCircle src={user?.photoURL} title={user.displayName}>
                                             </Image>
                                             :
                                             <FaUser className='text-dark'></FaUser>
                                         }
-                                        <Button className='ms-2' variant="outline-primary" onClick={handleLogOut}>Log out</Button>
+                                        <Button className='ms-2 text-white' variant="outline-primary" onClick={handleLogOut}>Log out</Button>
                                     </>
                                     :
                                     <>
-                                        <Button className='ms-2' variant="outline-primary"><Link className='text-decoration-none' to='/login'>Login</Link></Button>
+                                        <Button className='ms-2' variant="outline-primary"><Link className='text-decoration-none text-white' to='/login'>Login</Link></Button>
                                     </>
                             }
                         </Nav.Link>
