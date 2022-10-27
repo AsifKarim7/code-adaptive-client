@@ -14,18 +14,18 @@ const MiddleSide = () => {
             .then(data => setCategories(data))
     }, [])
     return (
-        <div>
-            <h4 className='fs-1 text-center'>Explore Programming Languages</h4>
+        <div className='mt-5'>
 
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 gap-4 mt-5">
+            <h1 className='title-color fw-bold text-center'>Explore Programming Languages</h1>
+
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 gap-4 mt-4 d-flex justify-content-center mb-5">
                 {
                     categories.map(category =>
-                        <Card style={{ width: '18rem' }} key={category.id}>
-                            <Card.Img variant="top" style={{ height: '225px' }} src={category.img} />
+                        <Card style={{ width: '18rem', padding: '0px' }} key={category.id} className='shadow-sm'>
+                            <Card.Img variant="top" style={{ height: '200px' }} src={category.img} />
                             <Card.Body>
-                                <Card.Title>{category.name}</Card.Title>
-                                <Card.Text>Price: {category.price}</Card.Text>
-                                <Button variant="outline-primary"><Link to={`/course/${category.id}`} className="text-decoration-none text-dark">Details</Link></Button>
+                                <Card.Title className='fw-bold'>{category.name}</Card.Title>
+                                <Button variant="outline-primary" className='mt-3'><Link to={`/course/${category.id}`} className="text-decoration-none text-dark">Details</Link></Button>
                             </Card.Body>
                         </Card>
 

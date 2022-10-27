@@ -24,7 +24,7 @@ const Header = () => {
     }
 
     return (
-        <Navbar collapseOnSelect expand="lg" variant="dark" className='bg-nav'>
+        <Navbar collapseOnSelect expand="lg" className='bg-nav' variant="dark">
             <Container>
                 <Navbar.Brand>
                     <Image style={{ height: '50px' }} roundedCircle src='https://images.vexels.com/media/users/3/224241/isolated/preview/4d2aacf413b02b74c2cdb75ea41f24d3-programming-diple-logo.png' ></Image>
@@ -33,10 +33,19 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ms-auto me-auto">
-                        <Button className='me-2' variant="outline-primary"><Link className='text-decoration-none text-white' to='/'>Home</Link></Button>
-                        <Button className='me-2' variant="outline-primary"><Link className='text-decoration-none text-white' to='/courses'>Courses</Link></Button>
-                        <Button className='me-2' variant="outline-primary"><Link className='text-decoration-none text-white' to='/faq'>FAQ</Link></Button>
-                        <Button className='me-2' variant="outline-primary"><Link className='text-decoration-none text-white' to='/blog'>Blog</Link></Button>
+                        <Nav.Link>
+                            <Link className='text-decoration-none text-white' to='/'>Home</Link>
+                        </Nav.Link>
+                        <Nav.Link className='ms-2'>
+                            <Link className='text-decoration-none text-white' to='/courses'>Courses</Link>
+                        </Nav.Link>
+                        <Nav.Link className='ms-2'>
+                            <Link className='text-decoration-none text-white' to='/faq'>FAQ</Link>
+                        </Nav.Link>
+                        <Nav.Link className='ms-2'>
+                            <Link className='text-decoration-none text-white' to='/blog'>Blog</Link>
+                        </Nav.Link>
+
                     </Nav>
 
                     <Button onClick={handleToggle} variant={state ? 'dark' : 'light'}>
@@ -55,7 +64,7 @@ const Header = () => {
                                                 roundedCircle src={user?.photoURL} title={user.displayName}>
                                             </Image>
                                             :
-                                            <FaUser className='text-dark'></FaUser>
+                                            <FaUser className='ms-2 text-white'></FaUser>
                                         }
                                         <Button className='ms-2 text-white' variant="outline-primary" onClick={handleLogOut}>Log out</Button>
                                     </>

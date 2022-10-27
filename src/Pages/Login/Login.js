@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { useState } from 'react';
+import { Container } from 'react-bootstrap';
 
 
 const Login = () => {
@@ -70,35 +71,38 @@ const Login = () => {
     }
 
     return (
-        <div className='w-50 mx-auto'>
-            <h3 className='text-primary'>Please Login!</h3>
+
+        <Container className='bg-white mt-5 pb-4 rounded-3 shadow-lg'>
+            <h3 className='title-color text-center py-4 fw-bolder fs-2'>User Login</h3>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control name="email" type="email" placeholder="Enter email" required />
+                    <Form.Control name="email" type="email" placeholder="Enter Email" required />
 
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control name="password" type="password" placeholder="Password" required />
+                    <Form.Control name="password" type="password" placeholder="Enter Password" required />
+
                 </Form.Group>
-                <div>
-                    <Button variant="primary" type="submit">
-                        Login
-                    </Button>
-                </div>
-                <Form.Text className='text-danger'>
-                    {error}
-                </Form.Text>
+
+                <Form.Group className='mb-3'>
+                    <Form.Text className='text-danger'>
+                        {error}
+                    </Form.Text>
+                </Form.Group>
+
+                <Button variant="primary" type="submit">
+                    Login
+                </Button>
             </Form>
             <div className='my-3'>
                 <Button onClick={handleGoogleSignIn} variant="outline-primary"><FaGoogle></FaGoogle> Login with Google</Button>
                 <Button onClick={handleGithubSignIn} className='ms-3' variant="outline-dark"> <FaGithub></FaGithub> Login with Github</Button>
             </div>
-
-            <p><small>New to this website? Please <Link to='/register'>Register</Link></small></p>
-        </div>
+            <p>New to this website? Please <Link className='text-decoration-none' to='/register'>Register</Link></p>
+        </Container>
     );
 };
 

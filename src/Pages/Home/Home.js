@@ -8,8 +8,8 @@ const Home = () => {
         <div className='home-bg d-flex justify-content-center'>
 
             <div className='text-center home-discription'>
-                <h1 className='text-white'>Programming isn't about what you know,</h1>
-                <h2 className='text-white'>it's about what you can figure out.</h2>
+                <h1 className='text-white'> <span className='title-color fw-bold'>Programming</span> isn't about what you know,</h1>
+                <h2 className='text-white'>it's about what you can <span className='title-color fw-bold'>figure out.</span></h2>
                 <Button className='mt-3' variant="primary"><Link className='text-decoration-none text-white' to='/courses'>Get Started</Link></Button>
             </div>
 

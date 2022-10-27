@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
+import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -51,8 +52,8 @@ const Registration = () => {
 
 
     return (
-        <div className='w-50 mx-auto'>
-            <h3 className='text-primary'>Please Register!</h3>
+        <Container className='bg-white mt-5 pb-4 rounded-3 shadow-lg'>
+            <h3 className='title-color text-center py-4 fw-bolder fs-2'>User Register</h3>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Your Name</Form.Label>
@@ -74,17 +75,23 @@ const Registration = () => {
                     <Form.Control type="password" name='password' placeholder="Password" required />
                 </Form.Group>
 
-                <div>
-                    <Button variant="primary" type="submit">
-                        Register
-                    </Button>
-                </div>
-                <Form.Text className='text-danger'>
-                    {error}
-                </Form.Text>
+                <Form.Group className="mb-3">
+                    <Form.Text className='text-danger'>
+                        {error}
+                    </Form.Text>
+                </Form.Group>
+
+                <Button className='mb-3' variant="primary" type="submit">
+                    Register
+                </Button>
+
+                <p>Already have an account? Please <Link className='text-decoration-none' to='/login'>Log in</Link></p>
             </Form>
-            <p><small>Already have an account? Please <Link to='/login'>Log in</Link></small></p>
-        </div>
+
+        </Container>
+
+
+
     );
 };
 

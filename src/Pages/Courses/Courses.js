@@ -7,7 +7,7 @@ import MiddleSide from '../Shared/MiddleSide/MiddleSide';
 const Courses = () => {
     return (
         <Container>
-            <Row>
+            <Row >
                 <Col lg="3">
                     <LeftSideNav></LeftSideNav>
                 </Col>

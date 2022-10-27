@@ -21,6 +21,7 @@
 
 .main-comp {
   min-height: 100vh;
+  background-color: #f8f9fa;
 }
 
 .footer-comp {
